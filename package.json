@@ -1,0 +1,40 @@
+{
+  "name": "js-size",
+  "description": "Get the size of some JS.",
+  "version": "1.0.0",
+  "author": "Luke Karrys",
+  "bin": {
+    "js-size": "./index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/lukekarrys/js-size/issues"
+  },
+  "dependencies": {
+    "cli-table": "^0.3.0",
+    "concat-stream": "^1.4.6",
+    "gzip-size": "^1.0.0",
+    "pretty-bytes": "^1.0.1",
+    "uglifyjs": "^2.3.6"
+  },
+  "devDependencies": {
+    "browserify": "^5.11.2",
+    "jshint": "^2.5.5",
+    "lab": "^4.4.4",
+    "precommit-hook": "^1.0.7"
+  },
+  "homepage": "https://github.com/lukekarrys/js-size",
+  "keywords": [
+    "minify",
+    "gzip",
+    "bytes"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lukekarrys/js-size.git"
+  },
+  "scripts": {
+    "test": "./node_modules/lab/bin/lab -m 10000"
+  }
+}
