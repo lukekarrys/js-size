@@ -12,10 +12,10 @@ lab.experiment('CLI', function () {
             'Minifed',
             'Difference',
             'Percent',
-            '165.18 kB',
-            '73.57 kB',
-            '91.61 kB',
-            '44.54%'
+            '165.2 kB',
+            '73.63 kB',
+            '91.58 kB',
+            '44.57%'
         ];
 
         exec(cmd, {cwd: process.cwd()}, function (error, stdout, stderr) {
