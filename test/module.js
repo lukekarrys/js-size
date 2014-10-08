@@ -1,33 +1,51 @@
 var Lab = require('lab');
+var exec = require('child_process').exec;
 var lab = exports.lab = Lab.script();
 var jssize = require('../index');
 var browserify = require('browserify');
 
+var lastChar = {
+    original: 'B',
+    minified: 'B',
+    difference: 'B',
+    percent: '%'
+};
 
 lab.experiment('As module', function () {
     lab.test('Browserify', function (done) {
         var b = browserify();
         b.add('./lib/js-size.js');
-        b.bundle(function (err, js) {
-            var data = jssize(js);
-            Lab.expect(data.original, 'original').to.equal('165.2 kB');
-            Lab.expect(data.minified, 'minified').to.equal('73.63 kB');
-            Lab.expect(data.difference, 'difference').to.equal('91.58 kB');
-            Lab.expect(data.percent, 'percent').to.equal('44.57%');
-            done();
-        });
-    });
 
-    lab.test('As table', function (done) {
-        var b = browserify();
-        b.add('./lib/js-size.js');
+        console.log('Starting browserify....');
+
         b.bundle(function (err, js) {
-            var data = jssize.table(js);
-            Lab.expect(data.indexOf('165.2 kB')).to.not.equal(-1);
-            Lab.expect(data.indexOf('73.63 kB')).to.not.equal(-1);
-            Lab.expect(data.indexOf('91.58 kB')).to.not.equal(-1);
-            Lab.expect(data.indexOf('44.57%')).to.not.equal(-1);
-            done();
+            console.log('Getting size...');
+            var data = jssize(js);
+
+            console.log('Getting table size...');
+            var tableData = jssize.table(js);
+
+            Object.keys(data).forEach(function (key) {
+                var value = data[key];
+                var floatValue = parseFloat(value);
+                Lab.expect(typeof floatValue).to.equal('number');
+                Lab.expect(isNaN(floatValue)).to.equal(false);
+                Lab.expect(value.slice(-1)).to.equal(lastChar[key]);
+                Lab.expect(tableData.indexOf(value)).to.not.equal(-1);
+            });
+
+            console.log('Getting cli size...');
+            exec('./node_modules/.bin/browserify lib/js-size.js | ./index.js', {cwd: process.cwd()}, function (error, stdout, stderr) {
+                Lab.expect(stderr, 'stderr').to.equal('');
+                Lab.expect(error, 'error').to.equal(null);
+                Object.keys(data).forEach(function (key) {
+                    var value = data[key];
+                    var displayKey = key.slice(0, 1).toUpperCase() + key.slice(1);
+                    Lab.expect(stdout.indexOf(displayKey), 'stdout: ' + displayKey).to.not.equal(-1);
+                    Lab.expect(stdout.indexOf(value), 'stdout: ' + value).to.not.equal(-1);
+                });
+                done();
+            });
         });
     });
 });
