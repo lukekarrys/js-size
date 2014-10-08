@@ -1,6 +1,9 @@
 js-size
 =====================
 
+[![NPM](https://nodei.co/npm/js-size.png)](https://nodei.co/npm/js-size/)
+[![Build Status](https://travis-ci.org/lukekarrys/js-size.png?branch=master)](https://travis-ci.org/lukekarrys/js-size)
+
 Get the size of some JS.
 
 
