@@ -14,7 +14,7 @@
     "concat-stream": "^1.4.6",
     "gzip-size": "^1.0.0",
     "pretty-bytes": "^1.0.1",
-    "uglifyjs": "^2.3.6"
+    "uglify-js": "^2.4.16"
   },
   "devDependencies": {
     "browserify": "^5.11.2",
