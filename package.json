@@ -35,6 +35,6 @@
     "url": "git@github.com:lukekarrys/js-size.git"
   },
   "scripts": {
-    "test": "lab -m 40000"
+    "test": "lab -m 60000"
   }
 }
