@@ -6,6 +6,8 @@ js-size
 
 Get the size of some JS.
 
+All sizes are shown gzipped using the [`gzip-size` module](https://www.npmjs.com/package/gzip-size). The gzipped size better represents what gets sent over-the-wire in a production application. It also provides a better baselines when comparing the original to the minified size.
+
 
 ## Install
 
@@ -24,24 +26,24 @@ b.bundle(function (err, js) {
     console.log(jssize(js));
     /*
     {
-        original: '165.18 kB',
-        minified: '73.57 kB',
-        difference: '91.61 kB',
-        percent: '44.54%'
+        original: '170.96 kB',
+        minified: '77.19 kB',
+        difference: '93.77 kB',
+        percent: '45.15%'
     }
     */
 
     console.log(jssize.table(js));
     /*
-    ┌────────────┬───────────┐
-    │ Original   │ 165.18 kB │
-    ├────────────┼───────────┤
-    │ Minified   │ 73.57 kB  │
-    ├────────────┼───────────┤
-    │ Difference │ 91.61 kB  │
-    ├────────────┼───────────┤
-    │ Percent    │ 44.54%    │
-    └────────────┴───────────┘
+    ┌─────────────────┬───────────┐
+    │ Original (gzip) │ 170.96 kB │
+    ├─────────────────┼───────────┤
+    │ Minified (gzip) │ 77.19 kB  │
+    ├─────────────────┼───────────┤
+    │ Difference      │ 93.77 kB  │
+    ├─────────────────┼───────────┤
+    │ Percent         │ 45.15%    │
+    └─────────────────┴───────────┘
     */
 });
 ```
