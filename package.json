@@ -10,31 +10,37 @@
     "url": "https://github.com/lukekarrys/js-size/issues"
   },
   "dependencies": {
-    "cli-table": "^0.3.0",
-    "concat-stream": "^1.4.6",
+    "cli-table": "^0.3.1",
+    "concat-stream": "^1.4.7",
     "gzip-size": "^1.0.0",
-    "pretty-bytes": "^1.0.1",
-    "uglify-js": "^2.4.16"
+    "pretty-bytes": "^1.0.4",
+    "uglify-js": "^2.4.19"
   },
   "devDependencies": {
-    "browserify": "^5.11.2",
-    "jshint": "^2.5.5",
-    "lab": "^4.4.4",
-    "precommit-hook": "^1.0.7"
+    "browserify": "^9.0.4",
+    "chai": "^2.2.0",
+    "jshint": "^2.6.3",
+    "lab": "^5.5.1",
+    "precommit-hook": "^2.0.1"
   },
   "homepage": "https://github.com/lukekarrys/js-size",
   "keywords": [
-    "minify",
+    "bytes",
     "gzip",
-    "bytes"
+    "minify"
   ],
   "license": "MIT",
   "main": "index.js",
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:lukekarrys/js-size.git"
   },
   "scripts": {
-    "test": "lab -m 60000"
+    "lint": "jshint .",
+    "test": "lab -m 60000 -I replacements"
   }
 }
