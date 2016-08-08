@@ -4,24 +4,24 @@
   "version": "1.0.5",
   "author": "Luke Karrys",
   "bin": {
-    "js-size": "./index.js"
+    "js-size": "./cli.js"
   },
   "bugs": {
     "url": "https://github.com/lukekarrys/js-size/issues"
   },
   "dependencies": {
     "cli-table": "^0.3.1",
-    "concat-stream": "^1.4.7",
-    "gzip-size": "^1.0.0",
-    "pretty-bytes": "^1.0.4",
-    "uglify-js": "^2.4.19"
+    "concat-stream": "^1.5.1",
+    "gzip-size": "^3.0.0",
+    "pretty-bytes": "^3.0.1",
+    "uglify-js": "^2.7.0"
   },
   "devDependencies": {
-    "browserify": "^9.0.4",
-    "chai": "^2.2.0",
-    "jshint": "^2.6.3",
-    "lab": "^5.5.1",
-    "precommit-hook": "^2.0.1"
+    "browserify": "^13.1.0",
+    "chai": "^3.5.0",
+    "git-validate": "^2.1.4",
+    "lab": "^10.9.0",
+    "standard": "^7.1.2"
   },
   "homepage": "https://github.com/lukekarrys/js-size",
   "keywords": [
@@ -33,14 +33,16 @@
   "main": "index.js",
   "pre-commit": [
     "lint",
-    "test"
+    "test",
+    "validate"
   ],
   "repository": {
     "type": "git",
     "url": "git@github.com:lukekarrys/js-size.git"
   },
   "scripts": {
-    "lint": "jshint .",
-    "test": "lab -m 60000 -I replacements"
+    "lint": "standard",
+    "test": "lab -m 60000 -I replacements",
+    "validate": "npm ls"
   }
 }
