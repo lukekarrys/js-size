@@ -13,7 +13,7 @@
     "cli-table": "^0.3.1",
     "concat-stream": "^1.5.1",
     "gzip-size": "^3.0.0",
-    "pretty-bytes": "^3.0.1",
+    "pretty-bytes": "^4.0.0",
     "uglify-js": "^2.7.0"
   },
   "devDependencies": {
