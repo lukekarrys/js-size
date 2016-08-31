@@ -25,6 +25,9 @@
     "lab": "^11.0.0",
     "standard": "^8.0.0-beta.3"
   },
+  "engines": {
+    "node": ">=4"
+  },
   "homepage": "https://github.com/lukekarrys/js-size",
   "keywords": [
     "bytes",
