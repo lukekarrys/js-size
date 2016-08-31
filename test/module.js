@@ -15,6 +15,7 @@ var lastChar = {
 lab.experiment('As module', function () {
   lab.test('Browserify', function (done) {
     var b = browserify()
+    b.transform('babelify', {presets: ['es2015'], compact: false, global: true})
     b.add('./lib/js-size.js')
 
     console.log('Starting browserify....')
@@ -38,7 +39,7 @@ lab.experiment('As module', function () {
       })
 
       console.log('Getting cli size...')
-      exec('./node_modules/.bin/browserify lib/js-size.js | ./cli.js', {cwd: process.cwd()}, function (error, stdout, stderr) {
+      exec('./node_modules/.bin/browserify -t [ babelify --presets [ es2015 ] --global --compact false ] lib/js-size.js | ./cli.js', {cwd: process.cwd()}, function (error, stdout, stderr) {
         Chai.expect(stderr, 'stderr').to.equal('')
         Chai.expect(error, 'error').to.equal(null)
         Object.keys(data).forEach(function (key) {
