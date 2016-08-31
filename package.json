@@ -17,6 +17,8 @@
     "uglify-js": "^2.7.0"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.14.0",
+    "babelify": "^7.3.0",
     "browserify": "^13.1.0",
     "chai": "^3.5.0",
     "git-validate": "^2.1.4",
@@ -42,7 +44,7 @@
   },
   "scripts": {
     "lint": "standard",
-    "test": "lab -m 60000 -I replacements",
+    "test": "lab -m 60000 -I __core-js_shared__",
     "validate": "npm ls"
   }
 }
