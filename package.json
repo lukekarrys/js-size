@@ -12,7 +12,6 @@
   "dependencies": {
     "cli-table": "^0.3.1",
     "concat-stream": "^1.5.1",
-    "eslint": "^3.19.0",
     "gzip-size": "^3.0.0",
     "pretty-bytes": "^4.0.2",
     "uglify-js": "^2.8.14"
@@ -23,6 +22,7 @@
     "browserify": "^14.3.0",
     "chai": "^3.5.0",
     "git-validate": "^2.1.4",
+    "eslint": "^3.19.0",
     "lab": "^13.0.0",
     "standard": "^10.0.1"
   },
