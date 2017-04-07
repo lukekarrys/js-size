@@ -12,6 +12,7 @@
   "dependencies": {
     "cli-table": "^0.3.1",
     "concat-stream": "^1.5.1",
+    "eslint": "^3.19.0",
     "gzip-size": "^3.0.0",
     "pretty-bytes": "^4.0.2",
     "uglify-js": "^2.8.14"
