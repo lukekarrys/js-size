@@ -1,6 +1,8 @@
 js-size
 =====================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/lukekarrys/js-size.svg)](https://greenkeeper.io/)
+
 [![NPM](https://nodei.co/npm/js-size.png)](https://nodei.co/npm/js-size/)
 [![Build Status](https://travis-ci.org/lukekarrys/js-size.png?branch=master)](https://travis-ci.org/lukekarrys/js-size)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
