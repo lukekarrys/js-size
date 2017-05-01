@@ -1,13 +1,12 @@
 js-size
 =====================
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/lukekarrys/js-size.svg)](https://greenkeeper.io/)
+Get the size of some JS.
 
 [![NPM](https://nodei.co/npm/js-size.png)](https://nodei.co/npm/js-size/)
 [![Build Status](https://travis-ci.org/lukekarrys/js-size.png?branch=master)](https://travis-ci.org/lukekarrys/js-size)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-
-Get the size of some JS.
+[![Greenkeeper badge](https://badges.greenkeeper.io/lukekarrys/js-size.svg)](https://greenkeeper.io/)
 
 All sizes are shown gzipped using the [`gzip-size` module](https://www.npmjs.com/package/gzip-size). The gzipped size better represents what gets sent over-the-wire in a production application. It also provides a better baselines when comparing the original to the minified size.
 
