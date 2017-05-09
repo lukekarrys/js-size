@@ -3,5 +3,5 @@ node_js:
     - 4
     - 5
     - 6
-before_install: NPM_VERSION=`npm --version`; NPM_VERSION="${V%%.*}" if [[ "$NPM_VERSION" == "2" ]]; then npm install -g npm@latest; fi;
+before_install: NPM_VERSION=`npm --version`; NPM_VERSION="${V%%.*}"; if [[ "$NPM_VERSION" == "2" ]]; then npm install -g npm@latest; fi;
 script: npm run lint && npm run validate && npm test
