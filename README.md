@@ -21,33 +21,27 @@ npm install --save js-size
 ## Usage
 
 ```js
-var jssize = require('js-size');
-var b = browserify();
-b.add('./lib/js-size.js');
-b.bundle(function (err, js) {
-    console.log(jssize(js));
-    /*
-    {
-        original: '170.96 kB',
-        minified: '77.19 kB',
-        difference: '93.77 kB',
-        percent: '45.15%'
-    }
-    */
+const jssize = require('js-size')
+require('./something-that-bundles-your-js').then((jsStr) => {
+  console.log(jssize(js))
+  // {
+  //   original: '170.96 kB',
+  //   minified: '77.19 kB',
+  //   difference: '93.77 kB',
+  //   percent: '45.15%'
+  // }
 
-    console.log(jssize.table(js));
-    /*
-    ┌─────────────────┬───────────┐
-    │ Original (gzip) │ 170.96 kB │
-    ├─────────────────┼───────────┤
-    │ Minified (gzip) │ 77.19 kB  │
-    ├─────────────────┼───────────┤
-    │ Difference      │ 93.77 kB  │
-    ├─────────────────┼───────────┤
-    │ Percent         │ 45.15%    │
-    └─────────────────┴───────────┘
-    */
-});
+  console.log(jssize.table(js))
+  // ┌─────────────────┬───────────┐
+  // │ Original (gzip) │ 170.96 kB │
+  // ├─────────────────┼───────────┤
+  // │ Minified (gzip) │ 77.19 kB  │
+  // ├─────────────────┼───────────┤
+  // │ Difference      │ 93.77 kB  │
+  // ├─────────────────┼───────────┤
+  // │ Percent         │ 45.15%    │
+  // └─────────────────┴───────────┘
+})
 ```
 
 
@@ -89,7 +83,15 @@ $ js-size
 
   Example
     js-size index.js
-    10.34 kB
+    ┌─────────────────┬────────┐
+    │ Original (gzip) │ 588 B  │
+    ├─────────────────┼────────┤
+    │ Minified (gzip) │ 446 B  │
+    ├─────────────────┼────────┤
+    │ Difference      │ 142 B  │
+    ├─────────────────┼────────┤
+    │ Percent         │ 75.85% │
+    └─────────────────┴────────┘
 ```
 
 
