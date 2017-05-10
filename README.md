@@ -47,7 +47,7 @@ require('./something-that-bundles-your-js').then((jsStr) => {
 
 ## API
 
-### jssize(input)
+### jssize(input, options)
 
 #### input
 
@@ -56,7 +56,7 @@ Type: `string`, `buffer`
 
 Returns the `original` and `minified` sizes and the `difference` and `percent` minified.
 
-### jssize.table(input)
+### jssize.table(input, options)
 
 #### input
 
@@ -64,6 +64,17 @@ Returns the `original` and `minified` sizes and the `difference` and `percent` m
 Type: `string`, `buffer`
 
 Returns all the same table but formatted as a cli table.
+
+### options (default, {})
+
+#### `es` (default, false)
+
+Whether to use [`uglify-es`](https://www.npmjs.com/package/uglify-es) or not.
+
+#### Uglify options
+
+All other keys are passed directly to [`uglify`](https://github.com/mishoo/UglifyJS2). See the [API Reference](https://github.com/mishoo/UglifyJS2#api-reference) for available options.
+
 
 
 ## CLI
@@ -81,14 +92,18 @@ $ js-size
     js-size <file>
     cat <file.js> | js-size
 
+  Options
+    --config, -c Path to json config file to use for uglify options
+    --es, -e Use uglify-es
+
   Example
-    js-size index.js
+    js-size index.js --es
     ┌─────────────────┬────────┐
-    │ Original (gzip) │ 588 B  │
+    │ Original (gzip) │ 588 kB │
     ├─────────────────┼────────┤
-    │ Minified (gzip) │ 446 B  │
+    │ Minified (gzip) │ 446 kB │
     ├─────────────────┼────────┤
-    │ Difference      │ 142 B  │
+    │ Difference      │ 142 kB │
     ├─────────────────┼────────┤
     │ Percent         │ 75.85% │
     └─────────────────┴────────┘
