@@ -76,6 +76,24 @@ test('works with uglify-es', (t) => {
   t.end()
 })
 
+test('works with uglify-es as a fallback', (t) => {
+  const code = fs.readFileSync(path.resolve(__dirname, '..', esFixture))
+
+  const size = jssize(code)
+
+  Object.keys(size).forEach((key) => {
+    const value = size[key]
+    const num = parseFloat(value)
+
+    t.equal(typeof num, 'number')
+    t.equal(isNaN(num), false)
+    t.ok(num > 0)
+    t.ok((key === 'percent' ? /%$/ : /\sB$/).test(value))
+  })
+
+  t.end()
+})
+
 testP('works with a file', (t) => execa('./lib/cli.js', [fixture]).then((output) => {
   const stdout = output.stdout
   const data = parseTable(stdout)
