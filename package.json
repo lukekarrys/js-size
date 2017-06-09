@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "eslint": "^3.19.0",
-    "execa": "^0.6.3",
+    "execa": "^0.7.0",
     "git-validate": "^2.1.4",
     "jquery": "^3.2.1",
     "standard": "^10.0.1",
