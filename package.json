@@ -19,7 +19,7 @@
     "uglify-js": "^3.0.1"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
+    "eslint": "^4.0.0",
     "execa": "^0.7.0",
     "git-validate": "^2.1.4",
     "jquery": "^3.2.1",
