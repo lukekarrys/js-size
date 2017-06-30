@@ -51,5 +51,10 @@
     "lint": "standard",
     "test": "tape test/index.js",
     "validate": "npm ls"
+  },
+  "standard": {
+    "ignore": [
+      "test/fixtures/bad-*.js"
+    ]
   }
 }
