@@ -5,7 +5,12 @@ const execa = require('execa')
 const jssize = require('..')
 
 const fixture = './node_modules/jquery/dist/jquery.slim.js'
+const badFixture = './test/fixtures/bad-es5.js'
 const esFixture = './lib/index.js'
+const badESFixture = './test/fixtures/bad-es6.js'
+
+const rPercent = /^\d+(\.\d+)?%$/
+const rBytes = /^\d+(\.\d+)?\sk?B$/
 
 const testP = (name, cb) => test(name, (t) => cb(t)
   .then(() => t.end())
@@ -31,7 +36,7 @@ test('programmatic api', (t) => {
     t.equal(isNaN(num), false)
     t.ok(num > 0)
     t.ok(table.indexOf(value) > -1)
-    t.ok((key === 'percent' ? /%$/ : /\skB$/).test(value))
+    t.ok((key === 'percent' ? rPercent : rBytes).test(value))
   })
 
   t.end()
@@ -60,7 +65,7 @@ test('works with uglify-es', (t) => {
     t.equal(typeof num, 'number')
     t.equal(isNaN(num), false)
     t.ok(num > 0)
-    t.ok((key === 'percent' ? /%$/ : /\sB$/).test(value))
+    t.ok((key === 'percent' ? rPercent : rBytes).test(value))
   })
 
   Object.keys(sizeNoMangle).forEach((key) => {
@@ -70,7 +75,7 @@ test('works with uglify-es', (t) => {
     t.equal(typeof num, 'number')
     t.equal(isNaN(num), false)
     t.ok(num > 0)
-    t.ok((key === 'percent' ? /%$/ : /\sB$/).test(value))
+    t.ok((key === 'percent' ? rPercent : rBytes).test(value))
   })
 
   t.end()
@@ -88,8 +93,19 @@ test('works with uglify-es as a fallback', (t) => {
     t.equal(typeof num, 'number')
     t.equal(isNaN(num), false)
     t.ok(num > 0)
-    t.ok((key === 'percent' ? /%$/ : /\sB$/).test(value))
+    t.ok((key === 'percent' ? rPercent : rBytes).test(value))
   })
+
+  t.end()
+})
+
+test('errors on bad es5 and es6 code', (t) => {
+  const code = fs.readFileSync(path.resolve(__dirname, '..', badFixture))
+  const esCode = fs.readFileSync(path.resolve(__dirname, '..', badESFixture))
+
+  const expected = new Error('Error minifying code:\nUnexpected token: eof (undefined)')
+  t.throws(() => jssize(code), expected)
+  t.throws(() => jssize(esCode), expected)
 
   t.end()
 })
@@ -108,10 +124,10 @@ testP('works with a file', (t) => execa('./lib/cli.js', [fixture]).then((output)
   t.equal(data[2][0], 'Difference')
   t.equal(data[3][0], 'Percent')
 
-  t.ok(data[0][1].match(/\d+\.?\d? kB/))
-  t.ok(data[1][1].match(/\d+\.?\d? kB/))
-  t.ok(data[2][1].match(/\d+\.?\d? kB/))
-  t.ok(data[3][1].match(/\d+\.?\d?%/))
+  t.ok(data[0][1].match(rBytes))
+  t.ok(data[1][1].match(rBytes))
+  t.ok(data[2][1].match(rBytes))
+  t.ok(data[3][1].match(rPercent))
 }))
 
 testP('works with stdin', (t) => execa('./lib/cli.js', [], { input: fs.createReadStream(fixture) }).then((output) => {
@@ -128,15 +144,15 @@ testP('works with stdin', (t) => execa('./lib/cli.js', [], { input: fs.createRea
   t.equal(data[2][0], 'Difference')
   t.equal(data[3][0], 'Percent')
 
-  t.ok(data[0][1].match(/\d+\.?\d? kB/))
-  t.ok(data[1][1].match(/\d+\.?\d? kB/))
-  t.ok(data[2][1].match(/\d+\.?\d? kB/))
-  t.ok(data[3][1].match(/\d+\.?\d?%/))
+  t.ok(data[0][1].match(rBytes))
+  t.ok(data[1][1].match(rBytes))
+  t.ok(data[2][1].match(rBytes))
+  t.ok(data[3][1].match(rPercent))
 }))
 
 testP('works with stdin and es', (t) => Promise.all([
   execa('./lib/cli.js', ['--es'], { input: fs.createReadStream(esFixture) }),
-  execa('./lib/cli.js', ['--es', '--config', './test/uglify.json'], { input: fs.createReadStream(esFixture) })
+  execa('./lib/cli.js', ['--es', '--config', './test/fixtures/uglify.json'], { input: fs.createReadStream(esFixture) })
 ]).then((parts) => {
   const stdout = parts[0].stdout
   const data = parseTable(stdout)
@@ -163,15 +179,15 @@ testP('works with stdin and es', (t) => Promise.all([
   t.equal(dataES[2][0], 'Difference')
   t.equal(dataES[3][0], 'Percent')
 
-  t.ok(data[0][1].match(/\d+\.?\d? B/))
-  t.ok(data[1][1].match(/\d+\.?\d? B/))
-  t.ok(data[2][1].match(/\d+\.?\d? B/))
-  t.ok(data[3][1].match(/\d+\.?\d?%/))
+  t.ok(data[0][1].match(rBytes))
+  t.ok(data[1][1].match(rBytes))
+  t.ok(data[2][1].match(rBytes))
+  t.ok(data[3][1].match(rPercent))
 
-  t.ok(dataES[0][1].match(/\d+\.?\d? B/))
-  t.ok(dataES[1][1].match(/\d+\.?\d? B/))
-  t.ok(dataES[2][1].match(/\d+\.?\d? B/))
-  t.ok(dataES[3][1].match(/\d+\.?\d?%/))
+  t.ok(dataES[0][1].match(rBytes))
+  t.ok(dataES[1][1].match(rBytes))
+  t.ok(dataES[2][1].match(rBytes))
+  t.ok(dataES[3][1].match(rPercent))
 
   t.ok(parseFloat(data[0][1]) === parseFloat(dataES[0][1]))
   t.ok(parseFloat(data[1][1]) < parseFloat(dataES[1][1]))
