@@ -16,7 +16,7 @@
     "meow": "^3.7.0",
     "pretty-bytes": "^4.0.2",
     "uglify-es": "^3.0.3",
-    "uglify-js": "^3.0.22"
+    "uglify-js": "^3.0.27"
   },
   "devDependencies": {
     "execa": "^0.7.0",
