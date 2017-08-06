@@ -1,7 +1,5 @@
 language: node_js
 node_js:
-    - 4
-    - 5
     - 6
-before_install: NPM_VERSION=`npm --version`; NPM_VERSION="${NPM_VERSION%%.*}"; if [[ "$NPM_VERSION" == "2" ]]; then npm install -g npm@latest; fi;
+    - 8
 script: npm run lint && npm run validate && npm test
