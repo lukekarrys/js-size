@@ -1,7 +1,7 @@
 {
   "name": "js-size",
   "description": "Get the size of some JS.",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "author": "Luke Karrys",
   "bin": {
     "js-size": "lib/cli.js"
