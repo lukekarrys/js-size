@@ -12,7 +12,7 @@
   "dependencies": {
     "cli-table": "^0.3.1",
     "concat-stream": "^1.5.1",
-    "gzip-size": "^3.0.0",
+    "gzip-size": "^4.0.0",
     "meow": "^3.7.0",
     "pretty-bytes": "^4.0.2",
     "uglify-es": "^3.0.3",
